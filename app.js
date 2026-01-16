@@ -18,7 +18,11 @@ const state = {
         quality: 1,
         seed: null,
         tile: false,
-        no: ''
+        no: '',
+        cref: '',
+        cw: 100,
+        sref: '',
+        sw: 100
     }
 };
 
@@ -59,6 +63,12 @@ const elements = {
     tileToggle: document.getElementById('tile'),
     tileValue: document.getElementById('tileValue'),
     noPrompt: document.getElementById('noPrompt'),
+    crefUrl: document.getElementById('crefUrl'),
+    cwSlider: document.getElementById('cw'),
+    cwValue: document.getElementById('cwValue'),
+    srefUrl: document.getElementById('srefUrl'),
+    swSlider: document.getElementById('sw'),
+    swValue: document.getElementById('swValue'),
 
     // Output
     outputPrompt: document.getElementById('outputPrompt'),
@@ -366,6 +376,30 @@ function initParameters() {
         state.params.no = e.target.value.trim();
         updateOutput();
     });
+
+    // Character Reference
+    elements.crefUrl.addEventListener('input', (e) => {
+        state.params.cref = e.target.value.trim();
+        updateOutput();
+    });
+
+    elements.cwSlider.addEventListener('input', (e) => {
+        state.params.cw = parseInt(e.target.value);
+        elements.cwValue.textContent = e.target.value;
+        updateOutput();
+    });
+
+    // Style Reference
+    elements.srefUrl.addEventListener('input', (e) => {
+        state.params.sref = e.target.value.trim();
+        updateOutput();
+    });
+
+    elements.swSlider.addEventListener('input', (e) => {
+        state.params.sw = parseInt(e.target.value);
+        elements.swValue.textContent = e.target.value;
+        updateOutput();
+    });
 }
 
 // ===== Generate Output =====
@@ -436,6 +470,22 @@ function generatePrompt() {
     // Negative prompt
     if (state.params.no) {
         params.push(`--no ${state.params.no}`);
+    }
+
+    // Character Reference
+    if (state.params.cref) {
+        params.push(`--cref ${state.params.cref}`);
+        if (state.params.cw !== 100) {
+            params.push(`--cw ${state.params.cw}`);
+        }
+    }
+
+    // Style Reference
+    if (state.params.sref) {
+        params.push(`--sref ${state.params.sref}`);
+        if (state.params.sw !== 100) {
+            params.push(`--sw ${state.params.sw}`);
+        }
     }
 
     // Combine prompt and parameters

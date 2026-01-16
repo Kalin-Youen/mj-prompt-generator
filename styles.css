@@ -53,6 +53,18 @@
     --transition-slow: 0.4s ease;
 }
 
+/* Sub-config group styling */
+.sub-config-group {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.sub-label {
+    font-size: 0.85em;
+    color: var(--text-light);
+}
+
 /* ===== Reset & Base ===== */
 *,
 *::before,

@@ -155,81 +155,113 @@
                     </div>
                 </div>
 
-                <!-- Version Selection -->
-                <div class="config-group">
-                    <label class="config-label">
-                        <span class="label-text">模型版本</span>
-                        <span id="versionValue" class="label-value">Niji 7</span>
-                    </label>
-                    <div class="version-selector">
-                        <div class="version-group">
-                            <span class="version-group-label">Niji</span>
-                            <div class="button-group" id="nijiVersion">
-                                <button class="version-btn" data-value="5">5</button>
-                                <button class="version-btn" data-value="6">6</button>
-                                <button class="version-btn active" data-value="7">7</button>
-                            </div>
-                        </div>
-                        <div class="version-divider">或</div>
-                        <div class="version-group">
-                            <span class="version-group-label">Midjourney</span>
-                            <div class="button-group" id="mjVersion">
-                                <button class="version-btn" data-value="5">5</button>
-                                <button class="version-btn" data-value="5.2">5.2</button>
-                                <button class="version-btn" data-value="6">6</button>
-                                <button class="version-btn" data-value="6.1">6.1</button>
-                                <button class="version-btn" data-value="7">7</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quality -->
-                <div class="config-group">
-                    <label class="config-label">
-                        <span class="label-text">质量 (--quality)</span>
-                        <span id="qualityValue" class="label-value">1</span>
-                    </label>
-                    <div class="button-group" id="quality">
-                        <button class="quality-btn" data-value="0.25">.25</button>
-                        <button class="quality-btn" data-value="0.5">.5</button>
-                        <button class="quality-btn active" data-value="1">1</button>
-                    </div>
-                </div>
-
-                <!-- Seed -->
-                <div class="config-group">
-                    <label class="config-label">
-                        <span class="label-text">随机种子 (--seed)</span>
-                        <span id="seedValue" class="label-value">随机</span>
-                    </label>
-                    <div class="seed-input-group">
-                        <input type="number" id="seed" class="seed-input" placeholder="留空为随机" min="0" max="4294967295">
-                        <button id="randomSeed" class="btn btn-icon" title="生成随机种子">🎲</button>
-                    </div>
-                </div>
-
-                <!-- Tile -->
-                <div class="config-group">
-                    <label class="config-label">
-                        <span class="label-text">平铺模式 (--tile)</span>
-                        <span id="tileValue" class="label-value">关闭</span>
-                    </label>
-                    <label class="toggle-switch">
-                        <input type="checkbox" id="tile">
-                        <span class="toggle-slider"></span>
-                    </label>
-                </div>
-
-                <!-- Negative Prompt -->
+                <!-- Character Reference -->
                 <div class="config-group config-group-wide">
                     <label class="config-label">
-                        <span class="label-text">排除内容 (--no)</span>
+                        <span class="label-text">角色参考 (--cref)</span>
                     </label>
-                    <input type="text" id="noPrompt" class="text-input"
-                        placeholder="输入要排除的内容，如: blurry, low quality, watermark">
+                    <input type="text" id="crefUrl" class="text-input" placeholder="输入角色图片URL">
+
+                    <div class="sub-config-group">
+                        <label class="config-label">
+                            <span class="label-text sub-label">角色权重 (--cw)</span>
+                            <span id="cwValue" class="label-value">100</span>
+                        </label>
+                        <input type="range" id="cw" class="slider" min="0" max="100" value="100" step="1">
+                    </div>
                 </div>
-            </div>
+
+                <!-- Style Reference -->
+                <div class="config-group config-group-wide">
+                    <label class="config-label">
+                        <span class="label-text">风格参考 (--sref)</span>
+                    </label>
+                    <input type="text" id="srefUrl" class="text-input" placeholder="输入风格图片URL或Sref代码">
+
+                    <div class="sub-config-group">
+                        <label class="config-label">
+                            <span class="label-text sub-label">风格权重 (--sw)</span>
+                            <span id="swValue" class="label-value">100</span>
+                        </label>
+                        <input type="range" id="sw" class="slider" min="0" max="1000" value="100" step="10">
+                    </div>
+
+                    <!-- Version Selection -->
+                    <div class="config-group">
+                        <label class="config-label">
+                            <span class="label-text">模型版本</span>
+                            <span id="versionValue" class="label-value">Niji 7</span>
+                        </label>
+                        <div class="version-selector">
+                            <div class="version-group">
+                                <span class="version-group-label">Niji</span>
+                                <div class="button-group" id="nijiVersion">
+                                    <button class="version-btn" data-value="5">5</button>
+                                    <button class="version-btn" data-value="6">6</button>
+                                    <button class="version-btn active" data-value="7">7</button>
+                                </div>
+                            </div>
+                            <div class="version-divider">或</div>
+                            <div class="version-group">
+                                <span class="version-group-label">Midjourney</span>
+                                <div class="button-group" id="mjVersion">
+                                    <button class="version-btn" data-value="5">5</button>
+                                    <button class="version-btn" data-value="5.2">5.2</button>
+                                    <button class="version-btn" data-value="6">6</button>
+                                    <button class="version-btn" data-value="6.1">6.1</button>
+                                    <button class="version-btn" data-value="7">7</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quality -->
+                    <div class="config-group">
+                        <label class="config-label">
+                            <span class="label-text">质量 (--quality)</span>
+                            <span id="qualityValue" class="label-value">1</span>
+                        </label>
+                        <div class="button-group" id="quality">
+                            <button class="quality-btn" data-value="0.25">.25</button>
+                            <button class="quality-btn" data-value="0.5">.5</button>
+                            <button class="quality-btn active" data-value="1">1</button>
+                        </div>
+                    </div>
+
+                    <!-- Seed -->
+                    <div class="config-group">
+                        <label class="config-label">
+                            <span class="label-text">随机种子 (--seed)</span>
+                            <span id="seedValue" class="label-value">随机</span>
+                        </label>
+                        <div class="seed-input-group">
+                            <input type="number" id="seed" class="seed-input" placeholder="留空为随机" min="0"
+                                max="4294967295">
+                            <button id="randomSeed" class="btn btn-icon" title="生成随机种子">🎲</button>
+                        </div>
+                    </div>
+
+                    <!-- Tile -->
+                    <div class="config-group">
+                        <label class="config-label">
+                            <span class="label-text">平铺模式 (--tile)</span>
+                            <span id="tileValue" class="label-value">关闭</span>
+                        </label>
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="tile">
+                            <span class="toggle-slider"></span>
+                        </label>
+                    </div>
+
+                    <!-- Negative Prompt -->
+                    <div class="config-group config-group-wide">
+                        <label class="config-label">
+                            <span class="label-text">排除内容 (--no)</span>
+                        </label>
+                        <input type="text" id="noPrompt" class="text-input"
+                            placeholder="输入要排除的内容，如: blurry, low quality, watermark">
+                    </div>
+                </div>
         </section>
 
         <!-- Output Section -->
