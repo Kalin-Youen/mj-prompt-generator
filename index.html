@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Midjourney/Niji 提示词生成器 - 快速生成专业级AI绘画提示词">
+    <title>🎨 Prompt Generator - Midjourney/Niji 提示词生成器</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <span class="logo-icon">🎨</span>
+                <h1>Prompt Generator</h1>
+                <span class="version-badge">v1.0</span>
+            </div>
+            <div class="header-actions">
+                <button id="toggleConfig" class="btn btn-ghost">
+                    <span class="icon">⚙️</span>
+                    <span>配置参数</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Left Panel: Image Upload -->
+            <section class="panel upload-panel">
+                <h2 class="panel-title">参考图片</h2>
+                <div id="dropZone" class="drop-zone">
+                    <div class="drop-zone-content">
+                        <div class="upload-icon">📷</div>
+                        <p class="upload-text">点击或拖拽图片到此处</p>
+                        <p class="upload-hint">支持 JPG, PNG, WebP</p>
+                    </div>
+                    <img id="previewImage" class="preview-image hidden" alt="预览">
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                </div>
+                <div id="imageUrlDisplay" class="image-url hidden">
+                    <span class="url-label">图片链接:</span>
+                    <input type="text" id="imageUrl" class="url-input" placeholder="或粘贴图片URL...">
+                </div>
+                <button id="clearImage" class="btn btn-secondary btn-sm hidden">清除图片</button>
+            </section>
+
+            <!-- Right Panel: Prompt Editor -->
+            <section class="panel prompt-panel">
+                <h2 class="panel-title">提示词描述</h2>
+                <textarea id="promptText" class="prompt-textarea"
+                    placeholder="输入你的主描述，例如：portrait of barbarian queen with wild dark brown windswept hair, fierce hazel eyes with gold flecks, tribal tattoo on cheekbone..."
+                    rows="6"></textarea>
+
+                <!-- Quick Style Tags -->
+                <div class="style-tags">
+                    <div class="style-tags-header">
+                        <h3 class="subsection-title">快速风格标签</h3>
+                        <button id="openTagExplorer" class="btn btn-sm btn-ghost">
+                            <span>🔍 探索更多标签</span>
+                        </button>
+                    </div>
+                    <div class="tags-container">
+                        <button class="tag" data-value="cinematic lighting">🎬 电影光影</button>
+                        <button class="tag" data-value="dramatic lighting">💡 戏剧性光影</button>
+                        <button class="tag" data-value="soft lighting">🌤️ 柔和光线</button>
+                        <button class="tag" data-value="golden hour">🌅 黄金时刻</button>
+                        <button class="tag" data-value="studio lighting">📸 棚拍光线</button>
+                        <button class="tag" data-value="volumetric lighting">✨ 体积光</button>
+                        <button class="tag" data-value="high detail">🔍 高细节</button>
+                        <button class="tag" data-value="ultra realistic">📷 超写实</button>
+                        <button class="tag" data-value="anime style">🎌 动漫风格</button>
+                        <button class="tag" data-value="oil painting">🖼️ 油画风格</button>
+                        <button class="tag" data-value="watercolor">🎨 水彩风格</button>
+                        <button class="tag" data-value="concept art">🖌️ 概念艺术</button>
+                        <button class="tag" data-value="8k uhd">📺 8K超高清</button>
+                        <button class="tag" data-value="bokeh">🔘 背景虚化</button>
+                        <button class="tag" data-value="depth of field">📐 景深效果</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Parameters Panel -->
+        <section id="configPanel" class="config-panel">
+            <div class="config-grid">
+                <!-- Aspect Ratio -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">宽高比 (--ar)</span>
+                        <span id="arValue" class="label-value">16:9</span>
+                    </label>
+                    <div class="button-group" id="aspectRatio">
+                        <button class="ratio-btn" data-value="1:1">1:1</button>
+                        <button class="ratio-btn active" data-value="16:9">16:9</button>
+                        <button class="ratio-btn" data-value="9:16">9:16</button>
+                        <button class="ratio-btn" data-value="4:3">4:3</button>
+                        <button class="ratio-btn" data-value="3:4">3:4</button>
+                        <button class="ratio-btn" data-value="2:3">2:3</button>
+                        <button class="ratio-btn" data-value="3:2">3:2</button>
+                        <button class="ratio-btn" data-value="21:9">21:9</button>
+                    </div>
+                </div>
+
+                <!-- Stylize -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">风格化 (--stylize)</span>
+                        <span id="stylizeValue" class="label-value">400</span>
+                    </label>
+                    <input type="range" id="stylize" class="slider" min="0" max="1000" value="400" step="10">
+                    <div class="slider-labels">
+                        <span>0</span>
+                        <span>低</span>
+                        <span>中</span>
+                        <span>高</span>
+                        <span>1000</span>
+                    </div>
+                </div>
+
+                <!-- Chaos -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">混乱度 (--chaos)</span>
+                        <span id="chaosValue" class="label-value">5</span>
+                    </label>
+                    <input type="range" id="chaos" class="slider" min="0" max="100" value="5" step="1">
+                    <div class="slider-labels">
+                        <span>0</span>
+                        <span>稳定</span>
+                        <span>中等</span>
+                        <span>随机</span>
+                        <span>100</span>
+                    </div>
+                </div>
+
+                <!-- Image Weight -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">图片权重 (--iw)</span>
+                        <span id="iwValue" class="label-value">1.0</span>
+                    </label>
+                    <input type="range" id="iw" class="slider" min="0" max="2" value="1" step="0.1">
+                    <div class="slider-labels">
+                        <span>0</span>
+                        <span>弱</span>
+                        <span>中</span>
+                        <span>强</span>
+                        <span>2</span>
+                    </div>
+                </div>
+
+                <!-- Version Selection -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">模型版本</span>
+                        <span id="versionValue" class="label-value">Niji 7</span>
+                    </label>
+                    <div class="version-selector">
+                        <div class="version-group">
+                            <span class="version-group-label">Niji</span>
+                            <div class="button-group" id="nijiVersion">
+                                <button class="version-btn" data-value="5">5</button>
+                                <button class="version-btn" data-value="6">6</button>
+                                <button class="version-btn active" data-value="7">7</button>
+                            </div>
+                        </div>
+                        <div class="version-divider">或</div>
+                        <div class="version-group">
+                            <span class="version-group-label">Midjourney</span>
+                            <div class="button-group" id="mjVersion">
+                                <button class="version-btn" data-value="5">5</button>
+                                <button class="version-btn" data-value="5.2">5.2</button>
+                                <button class="version-btn" data-value="6">6</button>
+                                <button class="version-btn" data-value="6.1">6.1</button>
+                                <button class="version-btn" data-value="7">7</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quality -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">质量 (--quality)</span>
+                        <span id="qualityValue" class="label-value">1</span>
+                    </label>
+                    <div class="button-group" id="quality">
+                        <button class="quality-btn" data-value="0.25">.25</button>
+                        <button class="quality-btn" data-value="0.5">.5</button>
+                        <button class="quality-btn active" data-value="1">1</button>
+                    </div>
+                </div>
+
+                <!-- Seed -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">随机种子 (--seed)</span>
+                        <span id="seedValue" class="label-value">随机</span>
+                    </label>
+                    <div class="seed-input-group">
+                        <input type="number" id="seed" class="seed-input" placeholder="留空为随机" min="0" max="4294967295">
+                        <button id="randomSeed" class="btn btn-icon" title="生成随机种子">🎲</button>
+                    </div>
+                </div>
+
+                <!-- Tile -->
+                <div class="config-group">
+                    <label class="config-label">
+                        <span class="label-text">平铺模式 (--tile)</span>
+                        <span id="tileValue" class="label-value">关闭</span>
+                    </label>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="tile">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+
+                <!-- Negative Prompt -->
+                <div class="config-group config-group-wide">
+                    <label class="config-label">
+                        <span class="label-text">排除内容 (--no)</span>
+                    </label>
+                    <input type="text" id="noPrompt" class="text-input"
+                        placeholder="输入要排除的内容，如: blurry, low quality, watermark">
+                </div>
+            </div>
+        </section>
+
+        <!-- Output Section -->
+        <section class="output-section">
+            <div class="output-header">
+                <h2 class="panel-title">🚀 生成的提示词</h2>
+                <div class="output-actions">
+                    <button id="copyBtn" class="btn btn-primary">
+                        <span class="icon">📋</span>
+                        <span>复制到剪贴板</span>
+                    </button>
+                </div>
+            </div>
+            <div class="output-content">
+                <pre id="outputPrompt" class="output-text">在上方输入描述和配置参数，提示词将在此实时生成...</pre>
+            </div>
+            <div id="copyToast" class="toast hidden">✅ 已复制到剪贴板!</div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Prompt Generator for Midjourney & Niji · Made with ❤️</p>
+        </footer>
+    </div>
+
+    <!-- Tag Explorer Panel -->
+    <div id="tagExplorer" class="tag-explorer hidden">
+        <div class="tag-explorer-container">
+            <div class="tag-explorer-header">
+                <h2>🔍 标签探索</h2>
+                <div class="tag-explorer-controls">
+                    <input type="text" id="tagSearch" class="tag-search-input" placeholder="搜索标签或提示词...">
+                    <div class="search-dropdown">
+                        <button id="searchOnline" class="btn btn-primary btn-sm" title="从网络搜索提示词">
+                            <span>🌐 在线搜索 ▾</span>
+                        </button>
+                        <div class="search-dropdown-menu" id="searchDropdownMenu">
+                            <button class="search-option" data-site="lexica">
+                                <span class="site-icon">🎨</span>
+                                <div class="site-info">
+                                    <span class="site-name">Lexica.art</span>
+                                    <span class="site-desc">SD 提示词搜索引擎</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="prompthero">
+                                <span class="site-icon">🦸</span>
+                                <div class="site-info">
+                                    <span class="site-name">PromptHero</span>
+                                    <span class="site-desc">最大提示词社区</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="openart">
+                                <span class="site-icon">🖼️</span>
+                                <div class="site-info">
+                                    <span class="site-name">OpenArt</span>
+                                    <span class="site-desc">AI艺术与提示词</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="civitai">
+                                <span class="site-icon">🔥</span>
+                                <div class="site-info">
+                                    <span class="site-name">Civitai</span>
+                                    <span class="site-desc">模型与提示词分享</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="arthub">
+                                <span class="site-icon">🌟</span>
+                                <div class="site-info">
+                                    <span class="site-name">Arthub.ai</span>
+                                    <span class="site-desc">AI作品灵感库</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="midlibrary">
+                                <span class="site-icon">📚</span>
+                                <div class="site-info">
+                                    <span class="site-name">MidLibrary</span>
+                                    <span class="site-desc">Midjourney 风格库</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="krea">
+                                <span class="site-icon">✨</span>
+                                <div class="site-info">
+                                    <span class="site-name">Krea.ai</span>
+                                    <span class="site-desc">AI图像探索</span>
+                                </div>
+                            </button>
+                            <button class="search-option" data-site="promptbase">
+                                <span class="site-icon">💎</span>
+                                <div class="site-info">
+                                    <span class="site-name">PromptBase</span>
+                                    <span class="site-desc">提示词市场</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    <button id="refreshTags" class="btn btn-icon" title="刷新更多标签">🔄</button>
+                    <button id="closeTagExplorer" class="btn btn-icon" title="关闭">✕</button>
+                </div>
+            </div>
+            <!-- Mode Tabs -->
+            <div class="tag-explorer-tabs">
+                <button class="tab-btn active" data-mode="local">📚 本地标签库</button>
+                <button class="tab-btn" data-mode="online">🌐 在线提示词流</button>
+            </div>
+            <div class="tag-explorer-categories" id="tagCategories">
+                <!-- Categories will be rendered by JavaScript -->
+            </div>
+            <div class="tag-explorer-content" id="tagExplorerContent">
+                <!-- Tags will be rendered by JavaScript -->
+            </div>
+            <div class="tag-explorer-footer">
+                <button id="loadMoreTags" class="btn btn-secondary">
+                    <span id="loadMoreText">📥 加载更多标签</span>
+                </button>
+                <div class="selected-count">
+                    已选择: <span id="selectedTagCount">0</span> 个标签
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="tags-database.js"></script>
+    <script src="app.js"></script>
+</body>
+
+</html>
