@@ -1,4 +1,5 @@
 # 🎨 MJ Prompt Generator
+> [**✨ 在线使用 Live Demo**](https://Kalin-Youen.github.io/mj-prompt-generator/)
 
 Midjourney / Niji 提示词生成器 - 快速生成专业级AI绘画提示词
 
