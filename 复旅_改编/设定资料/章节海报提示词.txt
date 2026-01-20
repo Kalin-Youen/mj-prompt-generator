@@ -1,0 +1,88 @@
+# 《复旅》各章节宣传海报 AI 绘图提示词
+# 适用于 Nano Banana Pro / Midjourney / Stable Diffusion 等
+
+================================================================================
+## 第一章：眼睛
+================================================================================
+
+A hauntingly beautiful woman lying on a cold metallic surgical table in a dark laboratory. Her body is broken and fragile. A glowing crimson mechanical eye is being implanted into her eye socket, gears and circuits visible. Surgical tools and ethereal blue energy streams surround her. The scene is illuminated by the glow of the mechanical eye and faint monitor lights. Dark atmosphere with crimson and cold blue color palette. Cyberpunk meets fantasy, medical horror aesthetic, highly detailed, cinematic lighting. 
+
+Style: Dark sci-fi, wasteland aestheticism, melancholic rebirth theme.
+
+---
+
+================================================================================
+## 第二章：深入
+================================================================================
+
+A lone ethereal woman with silver-white hair and one glowing red mechanical eye walking through a mystical frozen forest called "Thousand Flood Cherry". Massive ice-covered trees with crystalline branches tower around her. Pale blue mist floats between the trees. Cherry blossom petals frozen in ice drift through the air. Mysterious glowing inscriptions appear on ancient tree trunks. The atmosphere is eerie yet beautiful, cold blue and silver color palette with hints of pale pink.
+
+Style: Frozen fantasy forest, ethereal and mysterious, wasteland aestheticism, highly detailed environment.
+
+---
+
+================================================================================
+## 第三章：行亦止
+================================================================================
+
+A sacred sanctuary called "Simu Umbrella" - an ancient spirit temple hidden in wilderness. A majestic deer-antlered priest (Pandori Pan) with massive branching antlers stands before an ornate altar. The sanctuary is overgrown with mystical vines and glowing flora. A fragile woman with mechanical eye stands at the entrance, silhouetted against the light. Ancient stone architecture with bioluminescent moss and floating spirit particles.
+
+Style: Sacred fantasy temple, nature reclaiming civilization, mystical atmosphere, warm amber and forest green palette.
+
+---
+
+================================================================================
+## 第四章：信标
+================================================================================
+
+A mystical spirit pool chamber with swirling blue-purple energy. Ancient holographic projections float above the water showing constellation-like beacon maps. A woman with mechanical eye reaches toward a glowing chip hovering in the air. A small broken mechanical creature (械斗) watches from shadows. Spirit energy streams connect various beacon points in a web of light. The scene feels like a crossroads of destiny.
+
+Style: Mystical data visualization, spirit technology fusion, purple and blue aurora palette, cinematic composition.
+
+---
+
+================================================================================
+## 第五章：南墙之约
+================================================================================
+
+Apocalyptic crimson desert wasteland called "Anmo South Wall". Massive ruined crystalline structures jut from blood-red sand. A ghostly figure of a man named "Yi" (以) materializes from crimson sand particles, reaching toward a woman with mechanical eye. They face each other across a gap that represents centuries of waiting. Dream-like quality with particles of red sand transforming into memories. A crumbling ancient wall dominates the background.
+
+Style: Wasteland dreamscape, romantic tragedy, crimson and gold palette, ethereal reunion scene, emotional composition.
+
+---
+
+================================================================================
+## 第六章：行至路上
+================================================================================
+
+Dramatic confrontation scene at a rebuilt human city. Multiple phantom copies of a man in flowing robes form a protective hexagonal shield barrier around a woman with mechanical eye. Massive firestorm and weaponry converge on the barrier from all directions. The woman stands with arms spread, accepting destruction, but is protected against her will. Broken debris and fire particles scatter everywhere. A floating war fortress looms in stormy clouds above.
+
+Style: Epic battle scene, sacrifice and protection theme, crimson fire vs blue spirit shields, dynamic action composition, cinematic.
+
+---
+
+================================================================================
+## 第七章：神明的创生
+================================================================================
+
+A breathtaking spirit city "Yiya Capital" (乙雅都) with floating crystalline architecture connected by glowing bridges. At the city's heart, a radiant white spirit core (晶核) emanates threads of light connecting to every building. A woman with silver hair and mechanical eye stands before the core, a silver thread of energy wrapping around her finger - representing her first "bond" (绊). A man in black robes watches from behind. The atmosphere transforms from cold isolation to warm belonging.
+
+Style: Utopian spirit city, rebirth and hope theme, silver-blue and soft white palette, sacred ceremony composition, emotional healing atmosphere.
+
+================================================================================
+# 通用后缀（可添加到每个提示词末尾增强效果）
+================================================================================
+
+Additional enhancement tags:
+- masterpiece, best quality, ultra detailed, 8k resolution
+- dramatic cinematic lighting, volumetric fog
+- concept art style, movie poster composition
+- by Greg Rutkowski, Artgerm, magali villeneuve
+
+================================================================================
+# 负面提示词（Negative Prompt）
+================================================================================
+
+Negative prompt (适用于SD类工具):
+low quality, blurry, distorted, ugly, deformed, bad anatomy, bad hands, extra fingers, missing fingers, watermark, text, signature, cropped, out of frame, duplicate, error
+
